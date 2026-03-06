@@ -2,6 +2,7 @@ import Fastify from 'fastify'
 import mongoose from 'mongoose'
 import cron from 'node-cron'
 import { dataRoutes } from './routes/data.js'
+import { metaRoutes } from './routes/meta.js'
 import { fetchAndStore, initializeTariffs } from './connector.js'
 import { OMIE, Tariff } from './db/models.js'
 
@@ -50,6 +51,7 @@ app.get('/meta', async () => {
 // ─── Data routes ─────────────────────────────────────────────────────────────
 
 await app.register(dataRoutes)
+await app.register(metaRoutes)
 
 // ─── Cron: fetch OMIE daily at 13:30 Lisbon time ────────────────────────────
 
